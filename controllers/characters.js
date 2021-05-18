@@ -1,4 +1,4 @@
-const Character = require("../models/characters");
+const Character = require("../models/character");
 
 module.exports = {
   findAll: async function (req, res) {

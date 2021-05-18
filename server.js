@@ -2,9 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 require("dotenv").config();
-const routes = require("./routes/characters");
 const app = express();
 const PORT = process.env.SERVER_PORT || 3001;
+
+// import routes
+const characterRoutes = require("./routes/characters");
 
 // Define middleware
 app.use(morgan("dev"));
@@ -16,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-app.use(routes);
+app.use("/api", characterRoutes);
 
 //connect to the mongo DB
 mongoose
