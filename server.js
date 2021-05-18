@@ -1,22 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const expressValidator = require("express-validator");
 require("dotenv").config();
-// const routes = require("./routes/user");
+const routes = require("./routes/characters");
 const app = express();
 const PORT = process.env.SERVER_PORT || 3001;
 
 // Define middleware
-app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // Serve statice assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
 // Add routes, both API and view
-// app.use(routes);
+app.use(routes);
 
 //connect to the mongo DB
 mongoose
